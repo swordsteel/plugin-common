@@ -16,6 +16,12 @@ plugins {
 }
 
 dependencies {
+    implementation("ltd.lulz.plugin.core:ltd.lulz.plugin.core.gradle.plugin:0.1.0")
+
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
+
+    implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.5")
+    implementation("org.jlleitschuh.gradle:ktlint-gradle:12.1.0")
 }
 
 description = "Lulz Ltd Test Plugin Common"
