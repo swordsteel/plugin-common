@@ -1,14 +1,13 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.extensions.DetektExtension.Companion.DEFAULT_SRC_DIR_KOTLIN
-import java.time.OffsetDateTime.now
-import java.time.ZoneId.of
-import java.time.format.DateTimeFormatter.ofPattern
 import org.gradle.api.JavaVersion.VERSION_17
 import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("io.gitlab.arturbosch.detekt") version "1.23.5"
+
+    id("ltd.lulz.plugin.core") version "0.1.0"
 
     kotlin("jvm") version "1.9.20"
 
@@ -21,11 +20,7 @@ dependencies {
 
 description = "Lulz Ltd Test Plugin Common"
 group = "ltd.lulz.plugin"
-
-val timestamp = now()
-    .atZoneSameInstant(of("UTC"))
-    .format(ofPattern("yyyy-MM-dd HH:mm:ss z"))
-    .toString()
+version = git.version()
 
 detekt {
     buildUponDefaultConfig = true
@@ -73,12 +68,13 @@ tasks {
         manifest.attributes.apply {
             put("Implementation-Title", project.name.uppercaseFirstChar())
             put("Implementation-Version", project.version)
-            put("Implementation-Vendor", "Lulz Ltd")
+            put("Implementation-Vendor", core.vendor)
             put("Built-By", System.getProperty("user.name"))
+            put("Built-Git", "${git.currentBranch()} #${git.currentShortHash()}")
             put("Built-Gradle", project.gradle.gradleVersion)
             put("Built-JDK", System.getProperty("java.version"))
             put("Built-OS", "${System.getProperty("os.name")} v${System.getProperty("os.version")}")
-            put("Built-Time", timestamp)
+            put("Built-Time", core.timestamp)
         }
     }
     withType<KotlinCompile> {
