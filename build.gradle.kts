@@ -20,6 +20,7 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
 
+    implementation("com.bmuschko:gradle-docker-plugin:9.4.0")
     implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.5")
     implementation("org.jlleitschuh.gradle:ktlint-gradle:12.1.0")
 }
