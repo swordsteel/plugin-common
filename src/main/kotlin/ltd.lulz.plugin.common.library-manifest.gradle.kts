@@ -7,7 +7,10 @@ plugins {
 tasks {
     withType<Jar> {
         manifest.attributes.apply {
-            put("Implementation-Title", project.name.uppercaseFirstChar())
+            put(
+                "Implementation-Title",
+                project.name.split("-").joinToString(" ") { word -> word.uppercaseFirstChar() },
+            )
             put("Implementation-Version", project.version)
             put("Implementation-Vendor", core.vendor)
             put("Built-By", System.getProperty("user.name"))

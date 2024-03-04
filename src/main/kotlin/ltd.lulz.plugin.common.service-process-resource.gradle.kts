@@ -7,7 +7,12 @@ plugins {
 tasks {
     withType<ProcessResources> {
         filesMatching("**/application.yml") {
-            filter { it.replace("%APP_NAME%", project.name.uppercaseFirstChar()) }
+            filter {
+                it.replace(
+                    "%APP_NAME%",
+                    project.name.split("-").joinToString(" ") { word -> word.uppercaseFirstChar() },
+                )
+            }
             filter { it.replace("%APP_VERSION%", project.version as String) }
             filter { it.replace("%APP_BUILD_TIME%", core.timestamp) }
             filter { it.replace("%APP_BUILD_OS_NAME%", System.getProperty("os.name")) }
