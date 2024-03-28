@@ -5,24 +5,24 @@ import org.gradle.kotlin.dsl.support.uppercaseFirstChar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("io.gitlab.arturbosch.detekt") version "1.23.5"
+    alias(lulz.plugins.io.gitlab.arturbosch.detekt)
 
-    id("ltd.lulz.plugin.core") version "0.1.0"
+    alias(lulz.plugins.ltd.lulz.plugin.core)
 
-    kotlin("jvm") version "1.9.20"
+    alias(lulz.plugins.kotlin.jvm)
 
     `kotlin-dsl`
     `maven-publish`
 }
 
 dependencies {
-    implementation("ltd.lulz.plugin.core:ltd.lulz.plugin.core.gradle.plugin:0.1.0")
+    implementation(lulz.ltd.lulz.plugin.core)
 
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
+    implementation(lulz.org.jetbrains.kotlin.gradle.plugin)
 
-    implementation("com.bmuschko:gradle-docker-plugin:9.4.0")
-    implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.5")
-    implementation("org.jlleitschuh.gradle:ktlint-gradle:12.1.0")
+    implementation(lulz.com.bmuschko.docker.gradle.plugin)
+    implementation(lulz.io.gitlab.arturbosch.detekt.gradle.plugin)
+    implementation(lulz.org.jlleitschuh.ktlint.gradle.plugin)
 }
 
 description = "Lulz Ltd Test Plugin Common"
